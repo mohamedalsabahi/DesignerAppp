@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/path/to/bootstrap.css"> <!-- Adjust Bootstrap path -->
+</head>
+<body>
+    <div class="container py-5">
+        <h1 class="mb-4 text-center">Company Details</h1>
+        <div class="card">
+            <img class="card-img-top" src="/uploads/<%= company.image %>" alt="<%= company.name %>" style="height: 300px; object-fit: cover;">
+            <div class="card-body">
+                <h3 class="card-title"><%= company.name %></h3>
+                <p class="card-text">
+                    <strong>Email:</strong> <%= company.email %><br>
+                    <strong>Phone:</strong> <%= company.mobile || 'N/A' %><br>
+                </p>
+                <a href="/" class="btn btn-primary">Back to Companies</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

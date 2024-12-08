@@ -1,0 +1,35 @@
+
+<% layout('layouts/layout') -%>
+
+
+<div class="container mt-5">
+    <h1 class="text-center">Create New Service</h1>
+    <form action="/admin/services" method="POST" enctype="multipart/form-data" class="mt-4">
+        <!-- Service Name -->
+        <div class="mb-3">
+            <label for="serviceName" class="form-label">Service Name</label>
+            <input type="text" class="form-control" id="serviceName" name="serviceName" placeholder="Enter service name" required>
+        </div>
+        <!-- Price -->
+        <div class="mb-3">
+            <label for="price" class="form-label">Price</label>
+            <input type="number" class="form-control" id="price" name="price" placeholder="Enter price" required>
+        </div>
+        <!-- Company Dropdown -->
+        <div class="mb-3">
+            <label for="companyId" class="form-label">Company</label>
+            <select class="form-select" id="companyId" name="companyId" required>
+                <% companies.forEach((company) => { %>
+                    <option value="<%= company._id %>"><%= company.name %></option>
+                <% }); %>
+            </select>
+        </div>
+        <!-- Image -->
+        <div class="mb-3">
+            <label for="serviceImage" class="form-label">Service Image</label>
+            <input type="file" class="form-control" id="serviceImage" name="serviceImage" accept="image/*" required>
+        </div>
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary">Create Service</button>
+    </form>
+</div>

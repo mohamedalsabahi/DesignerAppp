@@ -1,0 +1,42 @@
+<% layout('layouts/layout') -%>
+
+<div class="container mt-5">
+    <h1 class="mb-4">Add a New Service</h1>
+
+    <!-- Display a company profile -->
+    <% if (company) { %>
+        <div class="company-profile mb-5 p-4 border rounded shadow-sm">
+            <h2 class="h4 mb-3">Company Profile</h2>
+            <p><strong>Company Name:</strong> <%= company.name %></p>
+            <p><strong>Email:</strong> <%= company.email %></p>
+            <p><strong>Mobile:</strong> <%= company.mobile || "N/A" %></p>
+        </div>
+    <% } else { %>
+        <div class="alert alert-warning" role="alert">
+            No company profile found for the current user.
+        </div>
+    <% } %>
+
+    <!-- Service Form -->
+    <form action="/addserv" method="POST" enctype="multipart/form-data" class="border p-4 rounded shadow-sm">
+        <div class="form-group mb-3">
+            <label for="serviceName" class="form-label">Service Name</label>
+            <input type="text" id="serviceName" name="serviceName" class="form-control" placeholder="Enter service name" required>
+        </div>
+        
+        <div class="form-group mb-3">
+            <label for="price" class="form-label">Price</label>
+            <input type="number" id="price" name="price" class="form-control" placeholder="Enter service price" min="0" required>
+        </div>
+
+        <div class="form-group mb-3">
+            <label for="serviceImage" class="form-label">Service Image</label>
+            <input type="file" id="serviceImage" name="serviceImage" class="form-control" accept="image/*" required>
+        </div>
+
+        <!-- Hidden input to associate the service with the logged-in user's company -->
+        <input type="hidden" name="companyId" value="<%= company._id %>">
+
+        <button type="submit" class="btn btn-primary mt-3">Add Service</button>
+    </form>
+</div>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Profiles</title>
+    <style>
+        .company-card { border: 1px solid #ddd; padding: 10px; margin: 10px; display: inline-block; text-align: center; }
+        .services-section { margin-top: 20px; }
+        .service-card { border: 1px solid #ddd; padding: 10px; margin: 10px; display: inline-block; }
+    </style>
+    <script>
+        async function fetchServices(companyId) {
+            const response = await fetch(`/companies/${companyId}/services`);
+            const services = await response.json();
+
+            const servicesSection = document.getElementById('services-section');
+            servicesSection.innerHTML = ''; // Clear previous services
+
+            if (services.length === 0) {
+                servicesSection.innerHTML = '<p>No services available for this company.</p>';
+                return;
+            }
+
+            // Display each service
+            services.forEach(service => {
+                const serviceCard = document.createElement('div');
+                serviceCard.classList.add('service-card');
+                serviceCard.innerHTML = `
+                    <h4>${service.serviceName}</h4>
+                    <p>Price: $${service.price}</p>
+                    <img src="/uploads/${service.image}" alt="${service.serviceName}" style="width:100px; height:auto;">
+                `;
+                servicesSection.appendChild(serviceCard);
+            });
+        }
+    </script>
+</head>
+<body>
+    <h1>Company Profiles</h1>
+    <div id="companies">
+        <% companies.forEach(company => { %>
+            <div class="company-card">
+                <h3><%= company.name %></h3>
+                <div class="company-card">
+                    <h3><%= company.name %></h3>
+                    <img src="/uploads/<%= company.image %>" alt="<%= company.name %>" style="width:100px; height:auto;">
+                </div>
+                                <button onclick="fetchServices('<%= company._id %>')">Fetch Details</button>
+            </div>
+        <% }) %>
+    </div>
+
+    <div class="services-section" id="services-section">
+        <h2>Services</h2>
+        <p>Select a company to view its services.</p>
+    </div>
+</body>
+</html>

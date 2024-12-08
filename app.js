@@ -370,7 +370,7 @@ app.get('/logout', (req, res) => {
         sameSite: 'Strict', // Prevent CSRF
     });
 
-    res.render('home'); // Renders register.ejs
+res.redirect("/");
 
    // res.status(200).json({ message: 'Logged out successfully' });
 });

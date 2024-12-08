@@ -23,7 +23,7 @@
                   </li>
                   <% if (user.role === 'admin') { %>
                       <li class="nav-item">
-                          <a class="nav-link" href="/services">View All Services</a>
+                          <a class="nav-link" href="/allservices">View All Services</a>
                       </li>
                   <% } %>
                   <li class="nav-item">
@@ -31,7 +31,24 @@
                   </li>
               <% } else { %>
                   <li class="nav-item">
-                      <a class="nav-link" href="/loginme">Login</a>
+                      <a class="nav-link" href="/">Home</a>
+
+                  </li>
+
+                  <a class="nav-link" href="/loginme">Login</a>
+
+                </li>
+
+
+
+                  <li>
+                    <a class="nav-link" href="/registerr">User Register</a>
+
+                  </li>
+
+                  <li>
+                    <a class="nav-link" href="/auth/register-with-company">Designer Register</a>
+
                   </li>
               <% } %>
           </ul>
